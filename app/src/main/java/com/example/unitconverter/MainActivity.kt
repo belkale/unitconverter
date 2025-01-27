@@ -53,7 +53,8 @@ class MainActivity : ComponentActivity() {
 
 enum class Unit {
     Centimeters, Meters, Feet, Millimeters;
-    fun conversionFactor() = when(this) {
+
+    fun conversionFactor() = when (this) {
         Centimeters -> 0.01
         Meters -> 1.0
         Feet -> 0.3048
@@ -94,15 +95,22 @@ fun UnitConverter(modifier: Modifier = Modifier) {
     ) {
         Text("Unit Converter", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(value = state.inputValue, onValueChange = {
-            state = state.copy(inputValue = it)
-        }, label = { Text("Enter Value") }, modifier = Modifier.testTag("inputValueTextField"))
+        OutlinedTextField(
+            value = state.inputValue,
+            onValueChange = {
+                state = state.copy(inputValue = it)
+            },
+            label = { Text("Enter Value") },
+            modifier = Modifier.testTag("inputValueTextField")
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Row {
             // Input Box
             Box {
-                Button(onClick = { inputUnitsExpanded = true },
-                    modifier = Modifier.testTag("inputUnitButton")) {
+                Button(
+                    onClick = { inputUnitsExpanded = true },
+                    modifier = Modifier.testTag("inputUnitButton")
+                ) {
                     Text(state.inputUnit.name)
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
@@ -120,8 +128,10 @@ fun UnitConverter(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.width(16.dp))
             // Output Box
             Box {
-                Button(onClick = { outputUnitsExpanded = true },
-                    modifier = Modifier.testTag("outputUnitButton")) {
+                Button(
+                    onClick = { outputUnitsExpanded = true },
+                    modifier = Modifier.testTag("outputUnitButton")
+                ) {
                     Text(state.outputUnit.name)
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
