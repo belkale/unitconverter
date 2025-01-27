@@ -25,12 +25,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.unitconverter.ui.theme.UnitConverterTheme
@@ -96,12 +96,13 @@ fun UnitConverter(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(value = state.inputValue, onValueChange = {
             state = state.copy(inputValue = it)
-        }, label = { Text("Enter Value") })
+        }, label = { Text("Enter Value") }, modifier = Modifier.testTag("inputValueTextField"))
         Spacer(modifier = Modifier.height(16.dp))
         Row {
             // Input Box
             Box {
-                Button(onClick = { inputUnitsExpanded = true }) {
+                Button(onClick = { inputUnitsExpanded = true },
+                    modifier = Modifier.testTag("inputUnitButton")) {
                     Text(state.inputUnit.name)
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
@@ -119,7 +120,8 @@ fun UnitConverter(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.width(16.dp))
             // Output Box
             Box {
-                Button(onClick = { outputUnitsExpanded = true }) {
+                Button(onClick = { outputUnitsExpanded = true },
+                    modifier = Modifier.testTag("outputUnitButton")) {
                     Text(state.outputUnit.name)
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
