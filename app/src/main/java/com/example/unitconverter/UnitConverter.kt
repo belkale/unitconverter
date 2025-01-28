@@ -32,8 +32,8 @@ data class UnitConverterState(
         get() {
             val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
             val result =
-                (inputValueDouble * inputUnit.conversionFactor() * 100
-                        / outputUnit.conversionFactor()).toInt() / 100.0
+                (inputValueDouble * inputUnit.conversionFactor * 100
+                        / outputUnit.conversionFactor).toInt() / 100.0
             return result.toString()
         }
 }
